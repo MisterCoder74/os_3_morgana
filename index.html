@@ -74,11 +74,11 @@
         <span class="wm-item">File</span><span class="wm-item">View</span><span class="wm-item">Help</span>
       </div>
       <div class="warp-content warp-folder-grid">
-        <div class="folder-item" ondblclick="appNotReady('Text Editor')"><div class="fi-icon">&#128196;</div><div class="fi-label">Text Editor</div></div>
+        <div class="folder-item" ondblclick="openEditor()"><div class="fi-icon">&#128196;</div><div class="fi-label">Text Editor</div></div>
         <div class="folder-item" ondblclick="appNotReady('HTML Editor')"><div class="fi-icon">&#128193;</div><div class="fi-label">HTML Editor</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Calculator')"><div class="fi-icon">&#128297;</div><div class="fi-label">Calculator</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Sticky Notes')"><div class="fi-icon">&#128204;</div><div class="fi-label">Sticky Notes</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Kanban Board')"><div class="fi-icon">&#128203;</div><div class="fi-label">Kanban Board</div></div>
+        <div class="folder-item" ondblclick="openCalculator()"><div class="fi-icon">&#128297;</div><div class="fi-label">Calculator</div></div>
+        <div class="folder-item" ondblclick="openStickyNotes()"><div class="fi-icon">&#128204;</div><div class="fi-label">Sticky Notes</div></div>
+        <div class="folder-item" ondblclick="openKanban()"><div class="fi-icon">&#128203;</div><div class="fi-label">Kanban Board</div></div>
         <div class="folder-item" ondblclick="appNotReady('File Manager')"><div class="fi-icon">&#128452;</div><div class="fi-label">File Manager</div></div>
       </div>
       <div class="warp-statusbar">6 objects</div>
@@ -315,5 +315,10 @@
     window.location.href = 'login.html';
   }
 </script>
+  <!-- Phase 3 Apps -->
+  <script src="js/apps/editor.js"></script>
+  <script src="js/apps/calculator.js"></script>
+  <script src="js/apps/stickynotes.js"></script>
+  <script src="js/apps/kanban.js"></script>
 </body>
 </html>
