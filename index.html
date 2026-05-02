@@ -123,8 +123,8 @@
       </div>
       <div class="warp-content warp-folder-grid">
         <div class="folder-item" ondblclick="appNotReady('WebExplorer')"><div class="fi-icon">&#127758;</div><div class="fi-label">WebExplorer</div></div>
-        <div class="folder-item" ondblclick="appNotReady('YouTube Player')"><div class="fi-icon">&#9654;&#65039;</div><div class="fi-label">YouTube Player</div></div>
-        <div class="folder-item" ondblclick="appNotReady('GitHub Viewer')"><div class="fi-icon">&#128024;</div><div class="fi-label">GitHub Viewer</div></div>
+        <div class="folder-item" ondblclick="openYoutube()"><div class="fi-icon">&#9654;&#65039;</div><div class="fi-label">YouTube Player</div></div>
+        <div class="folder-item" ondblclick="openGithubViewer()"><div class="fi-icon">&#128024;</div><div class="fi-label">GitHub Viewer</div></div>
         <div class="folder-item" ondblclick="appNotReady('FTP Client')"><div class="fi-icon">&#128228;</div><div class="fi-label">FTP Client</div></div>
         <div class="folder-item" ondblclick="appNotReady('Mail Client')"><div class="fi-icon">&#128231;</div><div class="fi-label">Mail Client</div></div>
       </div>
@@ -193,7 +193,7 @@
       <div class="warp-content warp-folder-grid">
         <div class="folder-item" ondblclick="appNotReady('Display Settings')"><div class="fi-icon">&#128250;</div><div class="fi-label">Display</div></div>
         <div class="folder-item" ondblclick="appNotReady('Mouse & Keyboard')"><div class="fi-icon">&#128432;</div><div class="fi-label">Mouse &amp; Keyboard</div></div>
-        <div class="folder-item" ondblclick="appNotReady('API Keys')"><div class="fi-icon">&#128273;</div><div class="fi-label">API Keys</div></div>
+        <div class="folder-item" ondblclick="openApiKeys()"><div class="fi-icon">&#128273;</div><div class="fi-label">API Keys</div></div>
         <div class="folder-item" ondblclick="appNotReady('User Profiles')"><div class="fi-icon">&#128100;</div><div class="fi-label">User Profiles</div></div>
         <div class="folder-item" ondblclick="appNotReady('Network')"><div class="fi-icon">&#127760;</div><div class="fi-label">Network</div></div>
         <div class="folder-item" ondblclick="appNotReady('Background')"><div class="fi-icon">&#127912;</div><div class="fi-label">Background</div></div>
@@ -216,8 +216,8 @@
         <span class="wm-item">File</span><span class="wm-item">Help</span>
       </div>
       <div class="warp-content warp-folder-grid">
-        <div class="folder-item" ondblclick="appNotReady('VoiceType AI Chat')"><div class="fi-icon">&#129302;</div><div class="fi-label">VoiceType Chat</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Image Generator')"><div class="fi-icon">&#127775;</div><div class="fi-label">Image Generator</div></div>
+        <div class="folder-item" ondblclick="openAiChat()"><div class="fi-icon">&#129302;</div><div class="fi-label">VoiceType Chat</div></div>
+        <div class="folder-item" ondblclick="openImageGen()"><div class="fi-icon">&#127775;</div><div class="fi-label">Image Generator</div></div>
         <div class="folder-item" ondblclick="appNotReady('Text-to-Speech')"><div class="fi-icon">&#128264;</div><div class="fi-label">Text-to-Speech</div></div>
       </div>
       <div class="warp-statusbar">3 objects — requires OpenAI API key</div>
@@ -320,5 +320,11 @@
   <script src="js/apps/calculator.js"></script>
   <script src="js/apps/stickynotes.js"></script>
   <script src="js/apps/kanban.js"></script>
+  <!-- Phase 4 AI & Integrations -->
+  <script src="js/apps/aichat.js"></script>
+  <script src="js/apps/github.js"></script>
+  <script src="js/apps/youtube.js"></script>
+  <script src="js/apps/imagegen.js"></script>
+  <script src="js/apps/apikeys.js"></script>
 </body>
 </html>
