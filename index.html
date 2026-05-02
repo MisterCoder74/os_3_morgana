@@ -290,6 +290,30 @@
 
   </div><!-- /desktop -->
 
-  <script src="js/desktop.js"></script>
+  <script src="js/desktop.js">
+  // ── AUTH GUARD ────────────────────────────────────────────
+  async function checkAuth() {
+    try {
+      const res  = await fetch('backend/me.php', { credentials: 'same-origin' });
+      const data = await res.json();
+      if (!data.ok) { window.location.href = 'login.html'; return; }
+      // Populate WarpCenter with username
+      const uEl = document.getElementById('wc-username');
+      if (uEl) uEl.textContent = '👤 ' + (data.user?.username || '');
+    } catch(e) {
+      window.location.href = 'login.html';
+    }
+  }
+
+  async function doLogout() {
+    await fetch('backend/auth.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'logout' }),
+      credentials: 'same-origin'
+    });
+    window.location.href = 'login.html';
+  }
+</script>
 </body>
 </html>
