@@ -1,47 +1,151 @@
 # OS/3 WebWarp — Codename Morgana
 
-> A faithful web recreation of IBM OS/2 Warp 4 "Merlin" (1996)
+> A faithful OS/2 Warp 4 desktop experience running entirely in the browser.  
+> Vanilla HTML · CSS · JavaScript · PHP — no frameworks, no dependencies.
 
-## Overview
+![OS/3 WebWarp Morgana](https://img.shields.io/badge/OS%2F3-WebWarp%20Morgana-teal?style=flat-square)
+![Phase](https://img.shields.io/badge/Phase-4%2F4%20Complete-brightgreen?style=flat-square)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-3%2C382-blue?style=flat-square)
+![Files](https://img.shields.io/badge/Files-24-blue?style=flat-square)
 
-OS/3 WebWarp is a SaaS-style web desktop inspired by the iconic OS/2 Warp 4 Workplace Shell.
-Every element replicates the original 3D-raised-border aesthetic, WarpCenter taskbar, and
-folder-based app structure.
+---
+
+## Features
+
+### 🖥️ Desktop Shell (Phase 1)
+- WarpCenter taskbar with live clock and CPU pulse meter
+- Draggable, resizable windows with minimize / maximize / restore
+- 9 folder windows (Programs, Productivity, Internet, Multimedia, Games, System Setup, AI Suite, Information, Startup)
+- System context menu (right-click on desktop)
+- Full OS/2 Warp 4 visual theme — 3D borders, teal desktop, bitmap-style fonts
+
+### 🔐 Authentication (Phase 2)
+- Login and registration dialog styled as an OS/2 system prompt
+- PHP session-based auth with bcrypt password hashing
+- Per-user JSON storage in `data/users/{username}/` (no SQL database)
+- Auth guard on `index.html` — redirects unauthenticated users to `login.html`
+- Atomic file writes with `flock()` to prevent corruption
+
+### 📦 Productivity Apps (Phase 3)
+| App | Description |
+|---|---|
+| 📝 Text Editor | Toolbar with **New**, **Save**, **Word Wrap**, **Copy All** · Courier New · status bar (line/col/chars/words) · Tab → 2 spaces · localStorage persistence |
+| 🧮 Calculator | 4 operations + % + ± · Memory (MC/MR/M+/M−) · keyboard input (0–9, +−*/., Enter, Esc, Backspace) |
+| 📌 Sticky Notes | Draggable notes on desktop · 5 colors · editable text · localStorage persistence |
+| 📊 Kanban Board | 3 columns (To Do / In Progress / Done) · drag & drop · add/delete cards · export .txt · localStorage |
+
+### 🤖 AI & Integrations (Phase 4)
+| App | Description |
+|---|---|
+| 🤖 VoiceType AI Chat | GPT-4o / GPT-4o-mini / GPT-3.5 · conversation history · OS/2-style chat bubbles · localStorage |
+| ✨ Image Generator | DALL-E 3 / DALL-E 2 · size selector · inline preview · download PNG |
+| 🐙 GitHub Viewer | Browse any public repo · file tree with icons · file/image preview · auto-loads README |
+| ▶️ YouTube Player | Paste URL or video ID · embedded player · last 10 videos history |
+| 🔑 API Keys | Save OpenAI key to user profile · toggle visibility · encrypted server-side storage |
+
+---
 
 ## Stack
 
-| Layer    | Technology                          |
-|----------|-------------------------------------|
-| Frontend | HTML · CSS · JavaScript (Vanilla)   |
-| Backend  | PHP (no framework)                  |
-| Storage  | JSON files (no SQL database)        |
-| AI       | OpenAI API (via PHP proxy)          |
-| Deploy   | GitHub API                          |
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5 · CSS3 · JavaScript (Vanilla ES6+) |
+| Backend | PHP 8+ (no framework) |
+| Storage | JSON files in `data/users/` (no SQL) |
+| Auth | PHP sessions + `password_hash()` (bcrypt) |
+| AI | OpenAI API — GPT + DALL-E via PHP proxy |
+
+---
 
 ## File Structure
 
 ```
 os_3_morgana/
-├── index.html          ← Desktop shell entry point
+├── index.html                  # Desktop shell (auth-guarded)
+├── login.html                  # Login / register dialog
 ├── css/
-│   └── style.css       ← OS/2 Warp 4 theme
+│   └── style.css               # OS/2 Warp 4 theme
 ├── js/
-│   └── desktop.js      ← WPS window manager
-├── backend/            ← PHP API (Phase 2)
-├── data/               ← JSON storage (Phase 2)
-└── images/             ← Assets
+│   ├── desktop.js              # Window manager, taskbar, drag, clock
+│   └── apps/
+│       ├── editor.js           # Text Editor
+│       ├── calculator.js       # Calculator
+│       ├── stickynotes.js      # Sticky Notes
+│       ├── kanban.js           # Kanban Board
+│       ├── aichat.js           # VoiceType AI Chat
+│       ├── imagegen.js         # Image Generator (DALL-E)
+│       ├── github.js           # GitHub Viewer
+│       ├── youtube.js          # YouTube Player
+│       └── apikeys.js          # API Keys settings
+├── backend/
+│   ├── config.php              # App configuration
+│   ├── auth.php                # Login / logout / register / check API
+│   ├── me.php                  # Session verification endpoint
+│   ├── lib/
+│   │   ├── storage.php         # Atomic JSON read/write (flock)
+│   │   └── users.php           # User CRUD helpers
+│   └── ai/
+│       ├── chat.php            # OpenAI chat completions proxy
+│       ├── image.php           # OpenAI image generation proxy
+│       └── apikey.php          # API key save/load per user
+└── data/
+    ├── .htaccess               # Block direct HTTP access to data/
+    └── users/                  # Per-user JSON profile storage
 ```
 
-## Roadmap
+**Total: 24 files · 3,382 lines of code**
 
-| Phase | Content                                              | Status |
-|-------|------------------------------------------------------|--------|
-| 1     | Shell: WarpCenter, desktop icons, window system      | ✅ Done |
-| 2     | Auth: PHP login, session, multi-user JSON storage    | ⏳ Next |
-| 3     | Apps: editor, calculator, sticky notes, kanban       | 🔜 Soon |
-| 4     | AI & Integrations: OpenAI, GitHub, YouTube           | 🔜 Soon |
+---
+
+## Setup
+
+### Requirements
+- PHP 8.0+
+- Web server with PHP support (Apache, Nginx, or local via `php -S`)
+- OpenAI API key (optional — only needed for Phase 4 AI apps)
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/MisterCoder74/os_3_morgana.git
+cd os_3_morgana
+```
+
+### 2. Set permissions
+```bash
+chmod 755 data/
+chmod 755 data/users/
+```
+
+### 3. Run locally
+```bash
+php -S localhost:8080
+```
+Then open `http://localhost:8080` in your browser.
+
+### 4. First launch
+- You'll be redirected to the login screen
+- Click **Register** to create an account
+- Log in to enter the desktop
+
+### 5. Enable AI apps (optional)
+1. Double-click **System Setup → API Keys** on the desktop
+2. Paste your OpenAI key (`sk-…`) and click **Save**
+3. Open **AI Suite → VoiceType Chat** or **Image Generator**
+
+---
+
+## Development Roadmap
+
+| Phase | Contents | Status |
+|---|---|---|
+| 1 — Shell | WarpCenter, desktop, window manager, drag/resize, clock | ✅ Done |
+| 2 — Auth | Login, registration, PHP sessions, JSON user storage | ✅ Done |
+| 3 — Apps | Text Editor, Calculator, Sticky Notes, Kanban Board | ✅ Done |
+| 4 — AI & Integrations | GPT Chat, DALL-E, GitHub Viewer, YouTube Player | ✅ Done |
+
+---
 
 ## Credits
 
-Developed by **Alessandro Demontis** — [Vivacity Design](https://www.vivacitydesign.net/)
-Inspired by IBM OS/2 Warp 4 "Merlin" (1996)
+Built by **Alessandro Demontis** / [Vivacity Design](https://vivacitydesign.it) · Rome, Italy  
+Generated and developed with **SureThing AI** · May 2026
