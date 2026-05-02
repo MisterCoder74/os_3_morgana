@@ -36,7 +36,7 @@
       <div style="padding:10px;">
         <div style="font-size:12px;margin-bottom:8px;">Create a new note:</div>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;" id="color-picker"></div>
-        <button onclick="stickyNew(0)" style="
+        <button onclick="stickyNew()" style="
           width:100%;height:26px;font-size:12px;font-family:inherit;cursor:pointer;
           background:#CCCCCC;border-top:2px solid #DFDFDF;border-left:2px solid #DFDFDF;
           border-right:2px solid #606060;border-bottom:2px solid #606060;">
@@ -58,10 +58,8 @@
     if (!cp) return;
     COLORS.forEach((c, i) => {
       const swatch = document.createElement('div');
-      swatch.style.cssText = `
-        width:28px;height:22px;background:${c};cursor:pointer;
-        border:2px solid ${i===selectedColor ? '#000080' : '#888'};
-        title="${CLABEL[i]}"`;
+      swatch.style.cssText = `width:28px;height:22px;background:${c};cursor:pointer;
+        border:2px solid ${i===selectedColor ? '#000080' : '#888'};`;
       swatch.title = CLABEL[i];
       swatch.dataset.idx = i;
       swatch.addEventListener('click', () => {
