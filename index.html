@@ -124,11 +124,11 @@
       <div class="warp-content warp-folder-grid">
         <div class="folder-item" ondblclick="openYoutube()"><div class="fi-icon">&#9654;&#65039;</div><div class="fi-label">YouTube Player</div></div>
         <div class="folder-item" ondblclick="openGithubViewer()"><div class="fi-icon">&#128024;</div><div class="fi-label">GitHub Viewer</div></div>
-        <div class="folder-item" ondblclick="appNotReady('WebExplorer')"><div class="fi-icon">&#127758;</div><div class="fi-label">WebExplorer</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Mail Client')"><div class="fi-icon">&#128231;</div><div class="fi-label">Mail Client</div></div>
-        <div class="folder-item" ondblclick="appNotReady('FTP Client')"><div class="fi-icon">&#128228;</div><div class="fi-label">FTP Client</div></div>
+        <div class="folder-item" ondblclick="openWebBrowser()"><div class="fi-icon">&#127758;</div><div class="fi-label">WebExplorer</div></div>
+        <div class="folder-item" ondblclick="openMailClient()"><div class="fi-icon">&#128231;</div><div class="fi-label">Mail Client</div></div>
+        <div class="folder-item" ondblclick="openFileManager()"><div class="fi-icon">&#128228;</div><div class="fi-label">File Manager</div></div>
       </div>
-      <div class="warp-statusbar">5 objects &mdash; 2 ready</div>
+      <div class="warp-statusbar">5 objects &mdash; 5 ready</div>
     </div>
 
     <!-- WINDOW: Multimedia -->
@@ -147,11 +147,11 @@
       </div>
       <div class="warp-content warp-folder-grid">
         <div class="folder-item" ondblclick="openImageGen()"><div class="fi-icon">&#128247;</div><div class="fi-label">Image Generator</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Audio Player')"><div class="fi-icon">&#127925;</div><div class="fi-label">Audio Player</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Video Player')"><div class="fi-icon">&#127916;</div><div class="fi-label">Video Player</div></div>
-        <div class="folder-item" ondblclick="appNotReady('CD Player')"><div class="fi-icon">&#128191;</div><div class="fi-label">CD Player</div></div>
+        <div class="folder-item" ondblclick="openAudioPlayer()"><div class="fi-icon">&#127925;</div><div class="fi-label">Audio Player</div></div>
+        <div class="folder-item" ondblclick="openVideoPlayer()"><div class="fi-icon">&#127916;</div><div class="fi-label">Video Player</div></div>
+        <div class="folder-item" ondblclick="openCdPlayer()"><div class="fi-icon">&#128191;</div><div class="fi-label">CD Player</div></div>
       </div>
-      <div class="warp-statusbar">4 objects &mdash; 1 ready</div>
+      <div class="warp-statusbar">4 objects &mdash; 4 ready</div>
     </div>
 
     <!-- WINDOW: Games -->
@@ -241,24 +241,25 @@
         <div class="warp-info-box">
           <h3>OS/3 WebWarp</h3>
           <p>Codename: <strong>Morgana</strong></p>
-          <p>Build: <strong>0.4.0</strong> &mdash; All Phases Complete</p>
+          <p>Build: <strong>0.5.0</strong> &mdash; All Phases Complete</p>
           <p>Inspired by IBM OS/2 Warp 4 &ldquo;Merlin&rdquo; (1996)</p>
           <hr>
           <p><strong>Phase 1</strong> &mdash; Shell: desktop, windows, WarpCenter</p>
           <p><strong>Phase 2</strong> &mdash; Auth: login, register, PHP sessions</p>
           <p><strong>Phase 3</strong> &mdash; Apps: Editor, Calculator, Sticky Notes, Kanban</p>
           <p><strong>Phase 4</strong> &mdash; AI: GPT Chat, DALL-E, GitHub, YouTube</p>
+          <p><strong>Phase 5</strong> &mdash; Internet &amp; Multimedia: Browser, Mail, Files, Audio, Video, CD</p>
           <hr>
           <p>Stack: HTML &middot; CSS &middot; JavaScript (Vanilla)</p>
           <p>Backend: PHP &middot; JSON Storage (no SQL)</p>
           <p>AI: OpenAI API (GPT-4o, DALL-E 3)</p>
-          <p>24 files &middot; 3,382 lines of code</p>
+          <p>30 files &middot; ~4,200 lines of code</p>
           <hr>
           <p>Developed by: <strong>Vivacity Design</strong></p>
           <p>Author: Alessandro Demontis &mdash; Rome, Italy</p>
         </div>
       </div>
-      <div class="warp-statusbar">v0.4.0 &mdash; May 2026</div>
+      <div class="warp-statusbar">v0.5.0 &mdash; May 2026</div>
     </div>
 
     <!-- WINDOW: Startup -->
@@ -333,5 +334,12 @@
   <script src="js/apps/youtube.js"></script>
   <script src="js/apps/imagegen.js"></script>
   <script src="js/apps/apikeys.js"></script>
+  <!-- Phase 5 Internet & Multimedia -->
+  <script src="js/apps/webbrowser.js"></script>
+  <script src="js/apps/mailclient.js"></script>
+  <script src="js/apps/ftpclient.js"></script>
+  <script src="js/apps/audioplayer.js"></script>
+  <script src="js/apps/videoplayer.js"></script>
+  <script src="js/apps/cdplayer.js"></script>
 </body>
 </html>
