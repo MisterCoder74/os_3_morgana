@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OS/3 WebWarp — Sign In</title>
+  <style>
+    :root {
+      --c-desktop: #008080;
+      --c-gray:    #AAAAAA;
+      --c-lgray:   #CCCCCC;
+      --c-dgray:   #808080;
+      --c-white:   #FFFFFF;
+      --c-black:   #000000;
+      --c-title:   #000080;
+      --c-btn:     #CCCCCC;
+      --c-hi:      #DFDFDF;
+      --c-lo:      #606060;
+      --c-dark:    #404040;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 13px;
+      background: var(--c-desktop);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    /* OS/2 style dialog box */
+    .login-box {
+      background: var(--c-lgray);
+      width: 340px;
+      border-top:    3px solid var(--c-white);
+      border-left:   3px solid var(--c-white);
+      border-right:  3px solid var(--c-dark);
+      border-bottom: 3px solid var(--c-dark);
+      outline: 1px solid var(--c-dgray);
+    }
+
+    .lb-titlebar {
+      background: var(--c-title);
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 3px 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lb-titlebar span { flex: 1; }
+    .lb-icon { font-size: 14px; }
+
+    .lb-body { padding: 16px 20px 10px; }
+
+    /* OS/2 logo area */
+    .os2-brand {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .os2-logo {
+      display: inline-block;
+      background: #000080;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 6px 14px;
+      letter-spacing: 2px;
+      border-top:    2px solid #4040CC;
+      border-left:   2px solid #4040CC;
+      border-right:  2px solid #000040;
+      border-bottom: 2px solid #000040;
+    }
+    .os2-sub {
+      font-size: 10px;
+      color: #555;
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* Inset label+field rows */
+    .field-row {
+      margin-bottom: 10px;
+    }
+    .field-row label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 3px;
+      color: #000;
+    }
+    .field-row input {
+      width: 100%;
+      height: 22px;
+      padding: 0 4px;
+      font-size: 12px;
+      font-family: inherit;
+      background: #fff;
+      color: #000;
+      border-top:    2px solid var(--c-lo);
+      border-left:   2px solid var(--c-lo);
+      border-right:  2px solid var(--c-hi);
+      border-bottom: 2px solid var(--c-hi);
+      outline: none;
+    }
+    .field-row input:focus {
+      border-top:    2px solid #000080;
+      border-left:   2px solid #000080;
+      outline: none;
+    }
+
+    /* Error message */
+    .err-box {
+      background: #FFEEEE;
+      border: 1px solid #CC0000;
+      color: #CC0000;
+      font-size: 11px;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .err-box.show { display: block; }
+
+    /* Button row */
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding-bottom: 16px;
+    }
+    .os2-btn {
+      height: 26px;
+      min-width: 88px;
+      padding: 0 14px;
+      background: var(--c-btn);
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: inherit;
+      color: var(--c-black);
+      border-top:    2px solid var(--c-white);
+      border-left:   2px solid var(--c-white);
+      border-right:  2px solid var(--c-dark);
+      border-bottom: 2px solid var(--c-dark);
+    }
+    .os2-btn:active {
+      border-top:    2px solid var(--c-dark);
+      border-left:   2px solid var(--c-dark);
+      border-right:  2px solid var(--c-white);
+      border-bottom: 2px solid var(--c-white);
+      padding-top: 2px;
+    }
+    .os2-btn.primary {
+      background: #000080;
+      color: #fff;
+      border-top:    2px solid #4040CC;
+      border-left:   2px solid #4040CC;
+      border-right:  2px solid #000040;
+      border-bottom: 2px solid #000040;
+    }
+    .os2-btn.primary:active {
+      border-top:    2px solid #000040;
+      border-left:   2px solid #000040;
+      border-right:  2px solid #4040CC;
+      border-bottom: 2px solid #4040CC;
+    }
+
+    /* Status line */
+    .lb-status {
+      border-top: 1px solid var(--c-dgray);
+      padding: 4px 8px;
+      font-size: 11px;
+      color: #444;
+      background: var(--c-lgray);
+      min-height: 20px;
+    }
+
+    /* loading spinner */
+    .spinner { display: none; }
+    .spinner.show { display: inline; }
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+  <div class="lb-titlebar">
+    <span class="lb-icon">🔐</span>
+    <span>OS/3 WebWarp — Sign In</span>
+  </div>
+
+  <div class="lb-body">
+    <div class="os2-brand">
+      <div class="os2-logo">OS/3</div>
+      <div class="os2-sub">WebWarp Workplace Shell</div>
+    </div>
+
+    <div class="err-box" id="err-box"></div>
+
+    <form id="login-form" onsubmit="doLogin(event)">
+      <div class="field-row">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" autocomplete="username"
+               autofocus maxlength="64" placeholder="Enter username">
+      </div>
+      <div class="field-row">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" autocomplete="current-password"
+               maxlength="128" placeholder="Enter password">
+      </div>
+
+      <div class="btn-row">
+        <button type="submit" class="os2-btn primary" id="btn-login">
+          Sign In <span class="spinner" id="spin">⏳</span>
+        </button>
+        <button type="button" class="os2-btn" onclick="showRegister()">Register</button>
+      </div>
+    </form>
+
+    <!-- Registration sub-form (hidden by default) -->
+    <form id="reg-form" style="display:none" onsubmit="doRegister(event)">
+      <div class="field-row">
+        <label for="reg-user">New Username:</label>
+        <input type="text" id="reg-user" name="reg-user" maxlength="64">
+      </div>
+      <div class="field-row">
+        <label for="reg-pass">Password:</label>
+        <input type="password" id="reg-pass" name="reg-pass" maxlength="128">
+      </div>
+      <div class="field-row">
+        <label for="reg-pass2">Confirm Password:</label>
+        <input type="password" id="reg-pass2" name="reg-pass2" maxlength="128">
+      </div>
+      <div class="btn-row">
+        <button type="submit" class="os2-btn primary">Create Account</button>
+        <button type="button" class="os2-btn" onclick="showLogin()">← Back</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="lb-status" id="status">Ready.</div>
+</div>
+
+<script>
+'use strict';
+
+function setStatus(msg) {
+  document.getElementById('status').textContent = msg;
+}
+function setError(msg) {
+  const el = document.getElementById('err-box');
+  el.textContent = msg;
+  el.classList.toggle('show', !!msg);
+}
+function setSpin(on) {
+  document.getElementById('spin').classList.toggle('show', on);
+  document.getElementById('btn-login').disabled = on;
+}
+
+function showRegister() {
+  setError('');
+  document.getElementById('login-form').style.display = 'none';
+  document.getElementById('reg-form').style.display   = '';
+  setStatus('Create a new account.');
+}
+function showLogin() {
+  setError('');
+  document.getElementById('reg-form').style.display  = 'none';
+  document.getElementById('login-form').style.display = '';
+  setStatus('Ready.');
+}
+
+async function doLogin(e) {
+  e.preventDefault();
+  setError('');
+  const user = document.getElementById('username').value.trim();
+  const pass = document.getElementById('password').value;
+  if (!user || !pass) { setError('Please enter username and password.'); return; }
+  setSpin(true);
+  setStatus('Signing in…');
+  try {
+    const res  = await fetch('backend/auth.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ action: 'login', username: user, password: pass })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      setStatus('Access granted. Loading desktop…');
+      window.location.href = 'index.html';
+    } else {
+      setError(data.error || 'Login failed.');
+      setStatus('Access denied.');
+    }
+  } catch (err) {
+    setError('Connection error: ' + err.message);
+    setStatus('Error.');
+  } finally {
+    setSpin(false);
+  }
+}
+
+async function doRegister(e) {
+  e.preventDefault();
+  setError('');
+  const user  = document.getElementById('reg-user').value.trim();
+  const pass  = document.getElementById('reg-pass').value;
+  const pass2 = document.getElementById('reg-pass2').value;
+  if (!user || !pass)        { setError('All fields required.'); return; }
+  if (pass !== pass2)        { setError('Passwords do not match.'); return; }
+  if (pass.length < 6)       { setError('Password must be at least 6 characters.'); return; }
+  if (!/^[a-zA-Z0-9_\-\.]+$/.test(user)) {
+    setError('Username may only contain letters, numbers, _ . -'); return;
+  }
+  setStatus('Creating account…');
+  try {
+    const res  = await fetch('backend/auth.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ action: 'register', username: user, password: pass })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      setStatus('Account created. Signing in…');
+      window.location.href = 'index.html';
+    } else {
+      setError(data.error || 'Registration failed.');
+      setStatus('Error.');
+    }
+  } catch (err) {
+    setError('Connection error: ' + err.message);
+    setStatus('Error.');
+  }
+}
+</script>
+</body>
+</html>
