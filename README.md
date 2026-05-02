@@ -4,9 +4,9 @@
 > Vanilla HTML · CSS · JavaScript · PHP — no frameworks, no dependencies.
 
 ![OS/3 WebWarp Morgana](https://img.shields.io/badge/OS%2F3-WebWarp%20Morgana-teal?style=flat-square)
-![Phase](https://img.shields.io/badge/Phase-4%2F4%20Complete-brightgreen?style=flat-square)
-![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-3%2C382-blue?style=flat-square)
-![Files](https://img.shields.io/badge/Files-24-blue?style=flat-square)
+![Phase](https://img.shields.io/badge/Phase-5%2F5%20Complete-brightgreen?style=flat-square)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-4%2C445-blue?style=flat-square)
+![Files](https://img.shields.io/badge/Files-30-blue?style=flat-square)
 
 ---
 
@@ -43,6 +43,20 @@
 | ▶️ YouTube Player | Paste URL or video ID · embedded player · last 10 videos history |
 | 🔑 API Keys | Save OpenAI key to user profile · toggle visibility · encrypted server-side storage |
 
+### 🌐 Internet (Phase 5)
+| App | Description |
+|---|---|
+| 🌍 WebExplorer | iframe browser · address bar · back/forward/refresh · bookmarks (Wikipedia, Archive.org, OpenStreetMap, DuckDuckGo) · blocked-page fallback with "Open in New Tab" |
+| 📧 Mail Client | 3-panel layout · Inbox, Sent, Drafts, Trash · compose, reply, delete · localStorage persistence · pre-seeded welcome message |
+| 📁 File Manager | Upload/download/delete files via PHP backend · per-user server storage · graceful offline fallback |
+
+### 🎵 Multimedia (Phase 5)
+| App | Description |
+|---|---|
+| 🎵 Audio Player | Dark-themed player · playlist · URL or local file load · play/pause/stop/prev/next · seek bar · volume |
+| 🎬 Video Player | HTML5 video · URL or local file · seek bar · volume · fullscreen |
+| 💿 CD Player | Retro skeuomorphic UI · spinning disc drawn on canvas with rainbow gradient · digital time display · eject to load file |
+
 ---
 
 ## Stack
@@ -76,11 +90,18 @@ os_3_morgana/
 │       ├── imagegen.js         # Image Generator (DALL-E)
 │       ├── github.js           # GitHub Viewer
 │       ├── youtube.js          # YouTube Player
-│       └── apikeys.js          # API Keys settings
+│       ├── apikeys.js          # API Keys settings
+│       ├── webbrowser.js       # WebExplorer (iframe browser)
+│       ├── mailclient.js       # Mail Client
+│       ├── ftpclient.js        # File Manager
+│       ├── audioplayer.js      # Audio Player
+│       ├── videoplayer.js      # Video Player
+│       └── cdplayer.js         # CD Player
 ├── backend/
 │   ├── config.php              # App configuration
 │   ├── auth.php                # Login / logout / register / check API
 │   ├── me.php                  # Session verification endpoint
+│   ├── files.php               # File Manager — list/upload/download/delete
 │   ├── lib/
 │   │   ├── storage.php         # Atomic JSON read/write (flock)
 │   │   └── users.php           # User CRUD helpers
@@ -90,10 +111,10 @@ os_3_morgana/
 │       └── apikey.php          # API key save/load per user
 └── data/
     ├── .htaccess               # Block direct HTTP access to data/
-    └── users/                  # Per-user JSON profile storage
+    └── users/                  # Per-user JSON profile + file storage
 ```
 
-**Total: 24 files · 3,382 lines of code**
+**Total: 30 files · 4,445 lines of code**
 
 ---
 
@@ -142,6 +163,7 @@ Then open `http://localhost:8080` in your browser.
 | 2 — Auth | Login, registration, PHP sessions, JSON user storage | ✅ Done |
 | 3 — Apps | Text Editor, Calculator, Sticky Notes, Kanban Board | ✅ Done |
 | 4 — AI & Integrations | GPT Chat, DALL-E, GitHub Viewer, YouTube Player | ✅ Done |
+| 5 — Internet & Multimedia | WebExplorer, Mail Client, File Manager, Audio Player, Video Player, CD Player | ✅ Done |
 
 ---
 
