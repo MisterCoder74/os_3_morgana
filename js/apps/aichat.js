@@ -1,5 +1,5 @@
 'use strict';
-/* OS/3 WebWarp — VoiceType AI Chat (OpenAI) */
+/* OS/3 WebWarp — BotType AI Chat (OpenAI) */
 (function () {
   const MODELS  = ['gpt-4o-mini','gpt-4o','gpt-3.5-turbo'];
   const STORE   = 'os3_ai_history';
@@ -27,7 +27,7 @@
     w.innerHTML = `
       <div class="warp-titlebar" onmousedown="startDrag(event,'win-aichat')">
         <div class="warp-sysmenu" onclick="showSysMenu(event,'win-aichat')">🤖</div>
-        <div class="warp-title">VoiceType AI Chat</div>
+        <div class="warp-title">BotType AI Chat</div>
         <div class="warp-controls">
           <button class="wbtn" onclick="minimizeWindow('win-aichat')" title="Minimize">&#9472;</button>
           <button class="wbtn" onclick="maximizeWindow('win-aichat')" title="Maximize">&#9633;</button>
