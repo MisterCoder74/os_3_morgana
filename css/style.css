@@ -119,6 +119,30 @@ body {
   justify-content: center;
 }
 
+/* Generic OS/2 Button */
+.os2-btn {
+  height: 24px;
+  padding: 0 12px;
+  background: var(--c-btn-bg);
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--c-black);
+  border-top:    2px solid var(--c-white);
+  border-left:   2px solid var(--c-white);
+  border-right:  2px solid var(--c-border-dark);
+  border-bottom: 2px solid var(--c-border-dark);
+  outline: none;
+}
+.os2-btn:active {
+  border-top:    2px solid var(--c-border-dark);
+  border-left:   2px solid var(--c-border-dark);
+  border-right:  2px solid var(--c-white);
+  border-bottom: 2px solid var(--c-white);
+  padding-top: 1px;
+}
+
 .wc-win-btn {
   height: 26px;
   padding: 0 8px;

@@ -1,10 +1,11 @@
+<?php require_once 'backend/config.php'; ?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OS/3 WebWarp — Codename Morgana</title>
-  <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo ASSET_VERSION; ?>">
 </head>
 <body>
 
@@ -177,7 +178,7 @@
       <div class="warp-content warp-folder-grid">
         <div class="folder-item" ondblclick="appNotReady('Solitaire')"><div class="fi-icon">&#127137;</div><div class="fi-label">Solitaire</div></div>
         <div class="folder-item" ondblclick="appNotReady('Mahjongg')"><div class="fi-icon">&#126980;</div><div class="fi-label">Mahjongg</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Reversi')"><div class="fi-icon">&#9917;</div><div class="fi-label">Reversi</div></div>
+        <div class="folder-item" ondblclick="openReversi()"><div class="fi-icon">&#9917;</div><div class="fi-label">Reversi</div></div>
       </div>
       <div class="warp-statusbar">3 objects</div>
     </div>
@@ -197,12 +198,12 @@
         <span class="wm-item">File</span><span class="wm-item">View</span><span class="wm-item">Help</span>
       </div>
       <div class="warp-content warp-folder-grid">
-        <div class="folder-item" ondblclick="appNotReady('Display Settings')"><div class="fi-icon">&#128250;</div><div class="fi-label">Display</div></div>
+        <div class="folder-item" ondblclick="openDisplaySettings()"><div class="fi-icon">&#128250;</div><div class="fi-label">Display</div></div>
         <div class="folder-item" ondblclick="appNotReady('Mouse & Keyboard')"><div class="fi-icon">&#128432;</div><div class="fi-label">Mouse &amp; Keyboard</div></div>
         <div class="folder-item" ondblclick="openApiKeys()"><div class="fi-icon">&#128273;</div><div class="fi-label">API Keys</div></div>
         <div class="folder-item" ondblclick="appNotReady('User Profiles')"><div class="fi-icon">&#128100;</div><div class="fi-label">User Profiles</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Network')"><div class="fi-icon">&#127760;</div><div class="fi-label">Network</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Background')"><div class="fi-icon">&#127912;</div><div class="fi-label">Background</div></div>
+        <div class="folder-item" ondblclick="openNetworkSettings()"><div class="fi-icon">&#127760;</div><div class="fi-label">Network</div></div>
+        <div class="folder-item" ondblclick="openBackgroundSettings()"><div class="fi-icon">&#127912;</div><div class="fi-label">Background</div></div>
       </div>
       <div class="warp-statusbar">6 objects</div>
     </div>
@@ -247,22 +248,22 @@
         <div class="warp-info-box">
           <h3>OS/3 WebWarp</h3>
           <p>Codename: <strong>Morgana</strong></p>
-          <p>Build: <strong>0.6.0</strong> &mdash; Phase 6 in progress</p>
+          <p>Build: <strong>0.6.1</strong> &mdash; Phase 6 completed</p>
           <p>Inspired by IBM OS/2 Warp 4 &ldquo;Merlin&rdquo; (1996)</p>
           <hr>
           <p><strong>Phase 1-5</strong> &mdash; Shell, Auth, Apps, AI, Multimedia</p>
-          <p><strong>Phase 6</strong> &mdash; System: Logout, App Close, Bug fixes</p>
+          <p><strong>Phase 6</strong> &mdash; System: Logout, Cache Busting, Setup Apps, Reversi</p>
           <hr>
           <p>Stack: HTML &middot; CSS &middot; JavaScript (Vanilla)</p>
           <p>Backend: PHP &middot; JSON Storage (no SQL)</p>
           <p>AI: OpenAI API (GPT-4o, DALL-E 3)</p>
-          <p>35 files &middot; 5,550 lines of code</p>
+          <p>38 files &middot; 6,000+ lines of code</p>
           <hr>
           <p>Developed by: <strong>Vivacity Design</strong></p>
           <p>Author: Alessandro Demontis &mdash; Rome, Italy</p>
         </div>
       </div>
-      <div class="warp-statusbar">v0.6.0 &mdash; May 2026</div>
+      <div class="warp-statusbar">v0.6.1 &mdash; May 2026</div>
     </div>
 
     <!-- WINDOW: Startup -->
@@ -302,30 +303,34 @@
 
   </div><!-- /desktop -->
 
-  <script src="js/desktop.js?v=<?php echo time(); ?>"></script>
+  <script src="js/desktop.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <!-- Shared utilities -->
-  <script src="js/filedlg.js?v=<?php echo time(); ?>"></script>
+  <script src="js/filedlg.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <!-- Phase 3 Apps -->
-  <script src="js/apps/editor.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/calculator.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/stickynotes.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/kanban.js?v=<?php echo time(); ?>"></script>
-  <!-- Phase 6 Apps: HTML Editor, File Manager -->
-  <script src="js/apps/htmleditor.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/filemanager.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/editor.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/calculator.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/stickynotes.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/kanban.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <!-- Phase 6 Apps: HTML Editor, File Manager, Reversi, Setup Apps -->
+  <script src="js/apps/htmleditor.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/filemanager.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/reversi.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/display.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/network.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/background.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <!-- Phase 4 AI & Integrations -->
-  <script src="js/apps/aichat.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/github.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/youtube.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/imagegen.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/apikeys.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/aichat.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/github.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/youtube.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/imagegen.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/apikeys.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <!-- Phase 5 Internet & Multimedia -->
-  <script src="js/apps/webbrowser.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/mailclient.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/ftpclient.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/audioplayer.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/videoplayer.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/cdplayer.js?v=<?php echo time(); ?>"></script>
-  <script src="js/apps/imageviewer.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/webbrowser.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/mailclient.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/ftpclient.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/audioplayer.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/videoplayer.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/cdplayer.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/imageviewer.js?v=<?php echo ASSET_VERSION; ?>"></script>
   </body>
 </html>

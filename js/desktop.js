@@ -31,12 +31,12 @@ async function checkAuth() {
   try {
     const res  = await fetch('backend/me.php', { credentials: 'same-origin' });
     const data = await res.json();
-    if (!data.ok) { window.location.href = 'login.html'; return; }
+    if (!data.ok) { window.location.href = 'login.php'; return; }
     // Populate WarpCenter with username
     const uEl = document.getElementById('wc-username');
     if (uEl) uEl.textContent = '👤 ' + (data.user?.username || '');
   } catch(e) {
-    window.location.href = 'login.html';
+    window.location.href = 'login.php';
   }
 }
 
@@ -49,7 +49,7 @@ async function doLogout() {
       credentials: 'same-origin'
     });
   } catch(e) {}
-  window.location.href = 'login.html';
+  window.location.href = 'login.php';
 }
 
 /* ============================================================
