@@ -2,7 +2,7 @@
 /**
  * OS/3 WebWarp — backend/me.php
  * Returns the currently logged-in user's public profile.
- * Called by index.html on load to verify session.
+ * Called by index.php on load to verify session.
  * Redirects to login.html if not authenticated.
  */
 

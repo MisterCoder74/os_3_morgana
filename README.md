@@ -23,7 +23,7 @@
 - Login and registration dialog styled as an OS/2 system prompt
 - PHP session-based auth with bcrypt password hashing
 - Per-user JSON storage in `data/users/{username}/` (no SQL database)
-- Auth guard on `index.html` — redirects unauthenticated users to `login.html`
+- Auth guard on `index.php` — redirects unauthenticated users to `login.html`
 - Atomic file writes with `flock()` to prevent corruption
 
 ### 📦 Productivity Apps (Phase 3)
@@ -75,7 +75,7 @@
 
 ```
 os_3_morgana/
-├── index.html                  # Desktop shell (auth-guarded)
+├── index.php                  # Desktop shell (auth-guarded)
 ├── login.html                  # Login / register dialog
 ├── css/
 │   └── style.css               # OS/2 Warp 4 theme
