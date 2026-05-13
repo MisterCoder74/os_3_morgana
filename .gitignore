@@ -1,0 +1,6 @@
+# OS/3 WebWarp .gitignore
+data/users/*/
+!data/users/.gitkeep
+*.png
+.DS_Store
+node_modules/
