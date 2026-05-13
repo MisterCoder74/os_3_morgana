@@ -108,7 +108,7 @@
       <div class="warp-content warp-folder-grid">
         <div class="folder-item" ondblclick="appNotReady('Markdown Converter')"><div class="fi-icon">&#128209;</div><div class="fi-label">Markdown Converter</div></div>
         <div class="folder-item" ondblclick="appNotReady('PDF Viewer')"><div class="fi-icon">&#128213;</div><div class="fi-label">PDF Viewer</div></div>
-        <div class="folder-item" ondblclick="appNotReady('Spreadsheet')"><div class="fi-icon">&#128202;</div><div class="fi-label">Spreadsheet</div></div>
+        <div class="folder-item" ondblclick="openSpreadsheet()"><div class="fi-icon">&#128202;</div><div class="fi-label">Spreadsheet</div></div>
         <div class="folder-item" ondblclick="appNotReady('DeScribe Writer')"><div class="fi-icon">&#9997;&#65039;</div><div class="fi-label">DeScribe Writer</div></div>
       </div>
       <div class="warp-statusbar">4 objects</div>
@@ -312,6 +312,7 @@
   <script src="js/apps/calculator.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/stickynotes.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/kanban.js?v=<?php echo ASSET_VERSION; ?>"></script>
+  <script src="js/apps/spreadsheet.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <!-- Phase 6 & 7 Apps: HTML Editor, File Manager, Reversi, Setup Apps -->
   <script src="js/apps/htmleditor.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/filemanager.js?v=<?php echo ASSET_VERSION; ?>"></script>
