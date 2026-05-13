@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OS/3 WebWarp — Codename Morgana</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
 
@@ -302,30 +302,30 @@
 
   </div><!-- /desktop -->
 
-  <script src="js/desktop.js"></script>
+  <script src="js/desktop.js?v=<?php echo time(); ?>"></script>
   <!-- Shared utilities -->
-  <script src="js/filedlg.js"></script>
+  <script src="js/filedlg.js?v=<?php echo time(); ?>"></script>
   <!-- Phase 3 Apps -->
-  <script src="js/apps/editor.js"></script>
-  <script src="js/apps/calculator.js"></script>
-  <script src="js/apps/stickynotes.js"></script>
-  <script src="js/apps/kanban.js"></script>
+  <script src="js/apps/editor.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/calculator.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/stickynotes.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/kanban.js?v=<?php echo time(); ?>"></script>
   <!-- Phase 6 Apps: HTML Editor, File Manager -->
-  <script src="js/apps/htmleditor.js"></script>
-  <script src="js/apps/filemanager.js"></script>
+  <script src="js/apps/htmleditor.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/filemanager.js?v=<?php echo time(); ?>"></script>
   <!-- Phase 4 AI & Integrations -->
-  <script src="js/apps/aichat.js"></script>
-  <script src="js/apps/github.js"></script>
-  <script src="js/apps/youtube.js"></script>
-  <script src="js/apps/imagegen.js"></script>
-  <script src="js/apps/apikeys.js"></script>
+  <script src="js/apps/aichat.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/github.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/youtube.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/imagegen.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/apikeys.js?v=<?php echo time(); ?>"></script>
   <!-- Phase 5 Internet & Multimedia -->
-  <script src="js/apps/webbrowser.js"></script>
-  <script src="js/apps/mailclient.js"></script>
-  <script src="js/apps/ftpclient.js"></script>
-  <script src="js/apps/audioplayer.js"></script>
-  <script src="js/apps/videoplayer.js"></script>
-  <script src="js/apps/cdplayer.js"></script>
-  <script src="js/apps/imageviewer.js"></script>
+  <script src="js/apps/webbrowser.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/mailclient.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/ftpclient.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/audioplayer.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/videoplayer.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/cdplayer.js?v=<?php echo time(); ?>"></script>
+  <script src="js/apps/imageviewer.js?v=<?php echo time(); ?>"></script>
   </body>
 </html>
