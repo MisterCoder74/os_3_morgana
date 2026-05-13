@@ -55,6 +55,10 @@
       <input type="file" id="vp-file-in" accept="video/*,audio/*" style="display:none" onchange="vpLoadFile(event)">
       <div class="warp-statusbar" id="vp-sb">Ready — Open a video to begin</div>`;
     document.getElementById('desktop').appendChild(w);
+
+    w.addEventListener('warp-close', () => {
+      if (window.vpStop) window.vpStop();
+    });
   }
 
   let vpSeeking = false;
