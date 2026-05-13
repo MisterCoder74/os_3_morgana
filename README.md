@@ -4,9 +4,9 @@
 > Vanilla HTML · CSS · JavaScript · PHP — no frameworks, no dependencies.
 
 ![OS/3 WebWarp Morgana](https://img.shields.io/badge/OS%2F3-WebWarp%20Morgana-teal?style=flat-square)
-![Phase](https://img.shields.io/badge/Phase-6%20In%20Progress-orange?style=flat-square)
-![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-5%2C550-blue?style=flat-square)
-![Files](https://img.shields.io/badge/Files-35-blue?style=flat-square)
+![Phase](https://img.shields.io/badge/Phase-7%20Done-brightgreen?style=flat-square)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-6%2C000-blue?style=flat-square)
+![Files](https://img.shields.io/badge/Files-38-blue?style=flat-square)
 
 ---
 
@@ -76,7 +76,7 @@
 ```
 os_3_morgana/
 ├── index.php                  # Desktop shell (auth-guarded)
-├── login.html                  # Login / register dialog
+├── login.php                  # Login / register dialog
 ├── css/
 │   └── style.css               # OS/2 Warp 4 theme
 ├── js/
@@ -100,7 +100,11 @@ os_3_morgana/
 │       ├── audioplayer.js      # Audio Player
 │       ├── videoplayer.js      # Video Player
 │       ├── cdplayer.js         # CD Player
-│       └── imageviewer.js      # Image Viewer
+│       ├── imageviewer.js      # Image Viewer
+│       ├── reversi.js          # Reversi Game
+│       ├── display.js          # Display settings
+│       ├── network.js          # Network settings
+│       └── background.js       # Background settings
 ├── backend/
 │   ├── config.php              # App configuration
 │   ├── auth.php                # Login / logout / register / check API
@@ -118,7 +122,7 @@ os_3_morgana/
     └── users/                  # Per-user JSON profile + file storage
 ```
 
-**Total: 35 files · 5,550 lines of code**
+**Total: 38 files · 6,000+ lines of code**
 
 ---
 
@@ -168,7 +172,8 @@ Then open `http://localhost:8080` in your browser.
 | 3 — Apps | Text Editor, Calculator, Sticky Notes, Kanban Board | ✅ Done |
 | 4 — AI & Integrations | GPT Chat, DALL-E, GitHub Viewer, YouTube Player | ✅ Done |
 | 5 — Internet & Multimedia | WebExplorer, Mail Client, File Manager, Audio Player, Video Player, CD Player | ✅ Done |
-| 6 — System Upgrade | Logout functionality, App 'Close' (reset visited), Bug fixes | 🏗️ In Progress |
+| 6 — System Upgrade | Logout functionality, App 'Close' (reset visited), Bug fixes | ✅ Done |
+| 7 — OS Enhancement | Background, Display, Network apps & Reversi Game | ✅ Done |
 
 ---
 
