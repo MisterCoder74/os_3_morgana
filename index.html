@@ -19,9 +19,15 @@
     </div>
     <div id="wc-windows"></div>
     <div id="wc-right">
+      <div id="wc-username" style="font-size:11px; margin-right:8px; color:#333;"></div>
       <div id="wc-pulse"></div>
       <div id="wc-clock">00:00:00</div>
     </div>
+  </div>
+
+  <!-- WarpCenter System Menu -->
+  <div class="sys-menu" id="wc-sys-menu">
+    <div class="sys-menu-item" onclick="doLogout()">Logout...</div>
   </div>
 
   <!-- DESKTOP -->
@@ -241,25 +247,22 @@
         <div class="warp-info-box">
           <h3>OS/3 WebWarp</h3>
           <p>Codename: <strong>Morgana</strong></p>
-          <p>Build: <strong>0.5.0</strong> &mdash; All Phases Complete</p>
+          <p>Build: <strong>0.6.0</strong> &mdash; Phase 6 in progress</p>
           <p>Inspired by IBM OS/2 Warp 4 &ldquo;Merlin&rdquo; (1996)</p>
           <hr>
-          <p><strong>Phase 1</strong> &mdash; Shell: desktop, windows, WarpCenter</p>
-          <p><strong>Phase 2</strong> &mdash; Auth: login, register, PHP sessions</p>
-          <p><strong>Phase 3</strong> &mdash; Apps: Editor, Calculator, Sticky Notes, Kanban</p>
-          <p><strong>Phase 4</strong> &mdash; AI: GPT Chat, DALL-E, GitHub, YouTube</p>
-          <p><strong>Phase 5</strong> &mdash; Internet &amp; Multimedia: Browser, Mail, Files, Audio, Video, CD</p>
+          <p><strong>Phase 1-5</strong> &mdash; Shell, Auth, Apps, AI, Multimedia</p>
+          <p><strong>Phase 6</strong> &mdash; System: Logout, App Close, Bug fixes</p>
           <hr>
           <p>Stack: HTML &middot; CSS &middot; JavaScript (Vanilla)</p>
           <p>Backend: PHP &middot; JSON Storage (no SQL)</p>
           <p>AI: OpenAI API (GPT-4o, DALL-E 3)</p>
-          <p>30 files &middot; 4,445 lines of code</p>
+          <p>35 files &middot; 5,550 lines of code</p>
           <hr>
           <p>Developed by: <strong>Vivacity Design</strong></p>
           <p>Author: Alessandro Demontis &mdash; Rome, Italy</p>
         </div>
       </div>
-      <div class="warp-statusbar">v0.5.0 &mdash; May 2026</div>
+      <div class="warp-statusbar">v0.6.0 &mdash; May 2026</div>
     </div>
 
     <!-- WINDOW: Startup -->
@@ -291,6 +294,7 @@
       <div class="sys-menu-item" onclick="maximizeSys()">Maximize &#9633;</div>
       <div class="sys-menu-divider"></div>
       <div class="sys-menu-item" onclick="hideSys()">Hide &#10005;</div>
+      <div class="sys-menu-item" onclick="closeSys()">Close</div>
     </div>
 
     <!-- Toast -->
@@ -298,31 +302,7 @@
 
   </div><!-- /desktop -->
 
-  <script src="js/desktop.js">
-  // ── AUTH GUARD ────────────────────────────────────────────
-  async function checkAuth() {
-    try {
-      const res  = await fetch('backend/me.php', { credentials: 'same-origin' });
-      const data = await res.json();
-      if (!data.ok) { window.location.href = 'login.html'; return; }
-      // Populate WarpCenter with username
-      const uEl = document.getElementById('wc-username');
-      if (uEl) uEl.textContent = '👤 ' + (data.user?.username || '');
-    } catch(e) {
-      window.location.href = 'login.html';
-    }
-  }
-
-  async function doLogout() {
-    await fetch('backend/auth.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'logout' }),
-      credentials: 'same-origin'
-    });
-    window.location.href = 'login.html';
-  }
-</script>
+  <script src="js/desktop.js"></script>
   <!-- Shared utilities -->
   <script src="js/filedlg.js"></script>
   <!-- Phase 3 Apps -->
