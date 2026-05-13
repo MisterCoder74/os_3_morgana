@@ -248,11 +248,12 @@
         <div class="warp-info-box">
           <h3>OS/3 WebWarp</h3>
           <p>Codename: <strong>Morgana</strong></p>
-          <p>Build: <strong>0.6.1</strong> &mdash; Phase 6 completed</p>
+          <p>Build: <strong>0.7.0</strong> &mdash; Phase 7 completed</p>
           <p>Inspired by IBM OS/2 Warp 4 &ldquo;Merlin&rdquo; (1996)</p>
           <hr>
           <p><strong>Phase 1-5</strong> &mdash; Shell, Auth, Apps, AI, Multimedia</p>
-          <p><strong>Phase 6</strong> &mdash; System: Logout, Cache Busting, Setup Apps, Reversi</p>
+          <p><strong>Phase 6</strong> &mdash; System: Logout, Cache Busting, Setup Apps</p>
+          <p><strong>Phase 7</strong> &mdash; Background, Display, Network &amp; Reversi Game</p>
           <hr>
           <p>Stack: HTML &middot; CSS &middot; JavaScript (Vanilla)</p>
           <p>Backend: PHP &middot; JSON Storage (no SQL)</p>
@@ -263,7 +264,7 @@
           <p>Author: Alessandro Demontis &mdash; Rome, Italy</p>
         </div>
       </div>
-      <div class="warp-statusbar">v0.6.1 &mdash; May 2026</div>
+      <div class="warp-statusbar">v0.7.0 &mdash; May 2026</div>
     </div>
 
     <!-- WINDOW: Startup -->
@@ -311,7 +312,7 @@
   <script src="js/apps/calculator.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/stickynotes.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/kanban.js?v=<?php echo ASSET_VERSION; ?>"></script>
-  <!-- Phase 6 Apps: HTML Editor, File Manager, Reversi, Setup Apps -->
+  <!-- Phase 6 & 7 Apps: HTML Editor, File Manager, Reversi, Setup Apps -->
   <script src="js/apps/htmleditor.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/filemanager.js?v=<?php echo ASSET_VERSION; ?>"></script>
   <script src="js/apps/reversi.js?v=<?php echo ASSET_VERSION; ?>"></script>

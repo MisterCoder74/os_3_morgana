@@ -15,7 +15,7 @@ define('SESSION_LIFETIME', 60 * 60 * 24 * 7);   // 7 days
 define('MIN_PASS_LEN', 6);
 
 // Asset Versioning for Cache Busting
-define('ASSET_VERSION', '0.6.1');
+define('ASSET_VERSION', '0.7.0');
 
 // Allow public registration (true) or invite-only (false)
 define('OPEN_REGISTRATION', true);
