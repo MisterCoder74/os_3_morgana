@@ -1,16 +1,19 @@
 <?php
 /* OS/3 WebWarp — File Manager Backend */
+require_once __DIR__ . '/config.php';
 header('Content-Type: application/json');
+
+session_name(SESSION_NAME);
 session_start();
 
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['username'])) {
     http_response_code(401);
     echo json_encode(['ok' => false, 'error' => 'Not authenticated']);
     exit;
 }
 
-$user    = preg_replace('/[^a-zA-Z0-9_\-]/', '', $_SESSION['user']);
-$userDir = __DIR__ . '/../data/users/' . $user . '/files/';
+$user    = preg_replace('/[^a-zA-Z0-9_\-]/', '', $_SESSION['username']);
+$userDir = USERS_DIR . $user . '/files/';
 
 if (!is_dir($userDir)) {
     mkdir($userDir, 0755, true);

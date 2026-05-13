@@ -98,6 +98,7 @@ function hideWindow(id) {
   const win = document.getElementById(id);
   if (!win) return;
   win.classList.remove('open');
+  win.dispatchEvent(new CustomEvent('warp-close'));
   updateTaskbar();
   closeSysMenu();
 }
