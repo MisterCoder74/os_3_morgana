@@ -4,9 +4,9 @@
 > Vanilla HTML · CSS · JavaScript · PHP — no frameworks, no dependencies.
 
 ![OS/3 WebWarp Morgana](https://img.shields.io/badge/OS%2F3-WebWarp%20Morgana-teal?style=flat-square)
-![Phase](https://img.shields.io/badge/Phase-5%2F5%20Complete-brightgreen?style=flat-square)
-![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-4%2C445-blue?style=flat-square)
-![Files](https://img.shields.io/badge/Files-30-blue?style=flat-square)
+![Phase](https://img.shields.io/badge/Phase-6%20In%20Progress-orange?style=flat-square)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-5%2C550-blue?style=flat-square)
+![Files](https://img.shields.io/badge/Files-35-blue?style=flat-square)
 
 ---
 
@@ -80,12 +80,14 @@ os_3_morgana/
 ├── css/
 │   └── style.css               # OS/2 Warp 4 theme
 ├── js/
-│   ├── desktop.js              # Window manager, taskbar, drag, clock
+│   ├── desktop.js              # Window manager, taskbar, drag, clock, auth
+│   ├── filedlg.js              # File open/save common dialogs
 │   └── apps/
 │       ├── editor.js           # Text Editor
 │       ├── calculator.js       # Calculator
 │       ├── stickynotes.js      # Sticky Notes
 │       ├── kanban.js           # Kanban Board
+│       ├── htmleditor.js       # HTML Editor
 │       ├── aichat.js           # VoiceType AI Chat
 │       ├── imagegen.js         # Image Generator (DALL-E)
 │       ├── github.js           # GitHub Viewer
@@ -93,10 +95,12 @@ os_3_morgana/
 │       ├── apikeys.js          # API Keys settings
 │       ├── webbrowser.js       # WebExplorer (iframe browser)
 │       ├── mailclient.js       # Mail Client
-│       ├── ftpclient.js        # File Manager
+│       ├── filemanager.js      # File Manager (Local)
+│       ├── ftpclient.js        # File Manager (Remote/Internet)
 │       ├── audioplayer.js      # Audio Player
 │       ├── videoplayer.js      # Video Player
-│       └── cdplayer.js         # CD Player
+│       ├── cdplayer.js         # CD Player
+│       └── imageviewer.js      # Image Viewer
 ├── backend/
 │   ├── config.php              # App configuration
 │   ├── auth.php                # Login / logout / register / check API
@@ -114,7 +118,7 @@ os_3_morgana/
     └── users/                  # Per-user JSON profile + file storage
 ```
 
-**Total: 30 files · 4,445 lines of code**
+**Total: 35 files · 5,550 lines of code**
 
 ---
 
@@ -164,6 +168,7 @@ Then open `http://localhost:8080` in your browser.
 | 3 — Apps | Text Editor, Calculator, Sticky Notes, Kanban Board | ✅ Done |
 | 4 — AI & Integrations | GPT Chat, DALL-E, GitHub Viewer, YouTube Player | ✅ Done |
 | 5 — Internet & Multimedia | WebExplorer, Mail Client, File Manager, Audio Player, Video Player, CD Player | ✅ Done |
+| 6 — System Upgrade | Logout functionality, App 'Close' (reset visited), Bug fixes | 🏗️ In Progress |
 
 ---
 

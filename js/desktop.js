@@ -14,6 +14,7 @@ const pulseEls  = [];
 
 // --- Boot ---
 document.addEventListener('DOMContentLoaded', () => {
+  checkAuth();
   startClock();
   initPulse();
   placeDesktopIcons();
@@ -22,6 +23,34 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mouseup',   onMouseUp);
   document.addEventListener('mousedown', onGlobalMouseDown);
 });
+
+/* ============================================================
+   AUTH & SESSION
+   ============================================================ */
+async function checkAuth() {
+  try {
+    const res  = await fetch('backend/me.php', { credentials: 'same-origin' });
+    const data = await res.json();
+    if (!data.ok) { window.location.href = 'login.html'; return; }
+    // Populate WarpCenter with username
+    const uEl = document.getElementById('wc-username');
+    if (uEl) uEl.textContent = '👤 ' + (data.user?.username || '');
+  } catch(e) {
+    window.location.href = 'login.html';
+  }
+}
+
+async function doLogout() {
+  try {
+    await fetch('backend/auth.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'logout' }),
+      credentials: 'same-origin'
+    });
+  } catch(e) {}
+  window.location.href = 'login.html';
+}
 
 /* ============================================================
    CLOCK
@@ -44,6 +73,7 @@ function startClock() {
    ============================================================ */
 function initPulse() {
   const container = document.getElementById('wc-pulse');
+  if (!container) return;
   for (let i = 0; i < 8; i++) {
     const bar = document.createElement('div');
     bar.className = 'pulse-bar';
@@ -103,6 +133,16 @@ function hideWindow(id) {
   closeSysMenu();
 }
 
+function closeWindow(id) {
+  const win = document.getElementById(id);
+  if (!win) return;
+  win.classList.remove('open');
+  delete win.dataset.visited;
+  win.dispatchEvent(new CustomEvent('warp-close'));
+  updateTaskbar();
+  closeSysMenu();
+}
+
 function minimizeWindow(id) {
   const win = document.getElementById(id);
   if (!win) return;
@@ -148,7 +188,7 @@ function onGlobalMouseDown(e) {
   if (win && win.classList.contains('open')) {
     bringToFront(win);
   }
-  if (!e.target.closest('#sys-menu') && !e.target.classList.contains('warp-sysmenu')) {
+  if (!e.target.closest('#sys-menu') && !e.target.classList.contains('warp-sysmenu') && !e.target.closest('#wc-sys-menu') && !e.target.classList.contains('wc-system-btn')) {
     closeSysMenu();
   }
 }
@@ -158,6 +198,7 @@ function onGlobalMouseDown(e) {
    ============================================================ */
 function updateTaskbar() {
   const container = document.getElementById('wc-windows');
+  if (!container) return;
   container.innerHTML = '';
 
   document.querySelectorAll('.warp-window').forEach(win => {
@@ -233,7 +274,10 @@ function showSysMenu(e, id) {
 }
 
 function closeSysMenu() {
-  document.getElementById('sys-menu').classList.remove('open');
+  const m1 = document.getElementById('sys-menu');
+  if (m1) m1.classList.remove('open');
+  const m2 = document.getElementById('wc-sys-menu');
+  if (m2) m2.classList.remove('open');
   sysMenuTarget = null;
 }
 
@@ -249,12 +293,22 @@ function sizeWin()     { closeSysMenu(); toast('Drag the window edge to resize.'
 function minimizeSys() { if (sysMenuTarget) minimizeWindow(sysMenuTarget); closeSysMenu(); }
 function maximizeSys() { if (sysMenuTarget) maximizeWindow(sysMenuTarget); closeSysMenu(); }
 function hideSys()     { if (sysMenuTarget) hideWindow(sysMenuTarget);     closeSysMenu(); }
+function closeSys()    { if (sysMenuTarget) closeWindow(sysMenuTarget);    closeSysMenu(); }
 
 /* ============================================================
    WARPCENTER SYSTEM BUTTON
    ============================================================ */
-function toggleSystemMenu() {
-  toast('OS/3 WebWarp \u2014 Morgana v0.1.0 \u2014 Vivacity Design');
+function toggleSystemMenu(btn) {
+  const menu = document.getElementById('wc-sys-menu');
+  if (menu.classList.contains('open')) {
+    menu.classList.remove('open');
+  } else {
+    menu.classList.add('open');
+    const rect = btn.getBoundingClientRect();
+    menu.style.left = rect.left + 'px';
+    menu.style.top  = rect.bottom + 'px';
+    menu.style.zIndex = 10000;
+  }
 }
 
 /* ============================================================
@@ -277,6 +331,7 @@ function appNotReady(name) {
 let toastTimer = null;
 function toast(msg, ms = 3500) {
   const el = document.getElementById('toast');
+  if (!el) return;
   el.textContent = msg;
   el.classList.add('show');
   if (toastTimer) clearTimeout(toastTimer);
